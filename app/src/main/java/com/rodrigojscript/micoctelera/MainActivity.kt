@@ -9,8 +9,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.rodrigojscript.micoctelera.model.ApiService
-import com.rodrigojscript.micoctelera.ui.screens.IngredientsScreen
-import com.rodrigojscript.micoctelera.ui.screens.searchIngredient
 import com.rodrigojscript.micoctelera.ui.theme.BaseAppTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,10 +26,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    searchByName("Vodka")
-                    searchIngredient()
-                    IngredientsScreen()
-
+                    searchRandom()
                 }
             }
         }
@@ -45,9 +40,9 @@ fun getDrinksByIngredients(): Retrofit {
         .build()
 }
 
- fun searchByName(query: String) {
+ fun searchRandom() {
     CoroutineScope(Dispatchers.IO).launch {
-        val call = getDrinksByIngredients().create(ApiService::class.java).getDrinksByIngredient("api/json/v1/1/filter.php?i=$query")
+        val call = getDrinksByIngredients().create(ApiService::class.java).getRandomDrink("api/json/v1/1/random.php")
         val drinks = call.body()
         if (call.isSuccessful) {
             if (drinks != null) {
@@ -59,4 +54,5 @@ fun getDrinksByIngredients(): Retrofit {
         }
     }
 }
+
 

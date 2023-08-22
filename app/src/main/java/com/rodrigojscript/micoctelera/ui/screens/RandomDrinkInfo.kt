@@ -37,21 +37,29 @@ fun RandomDrinkInfo(drink: RandomDrink) {
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = "Ingredients:", style = MaterialTheme.typography.h6)
-        Text(text = "- ${drink.strIngredient1}")
-        Text(text = "- ${drink.strIngredient2}")
-        Text(text = "- ${drink.strIngredient3}")
-        Text(text = "- ${drink.strIngredient4}")
-        Text(text = "- ${drink.strIngredient5}")
-        Text(text = "- ${drink.strIngredient6}")
-        Text(text = "- ${drink.strIngredient7}")
-        Text(text = "- ${drink.strIngredient8}")
-        Text(text = "- ${drink.strIngredient9}")
-        Text(text = "- ${drink.strIngredient10}")
-        Text(text = "- ${drink.strIngredient11}")
-        Text(text = "- ${drink.strIngredient12}")
-        Text(text = "- ${drink.strIngredient13}")
-        Text(text = "- ${drink.strIngredient14}")
-        Text(text = "- ${drink.strIngredient15}")
+        for (i in 1..15) {
+            val ingredient = when (i) {
+                1 -> drink.strIngredient1
+                2 -> drink.strIngredient2
+                3 -> drink.strIngredient3
+                4 -> drink.strIngredient4
+                5 -> drink.strIngredient5
+                6 -> drink.strIngredient6
+                7 -> drink.strIngredient7
+                8 -> drink.strIngredient8
+                9 -> drink.strIngredient9
+                10 -> drink.strIngredient10
+                11 -> drink.strIngredient11
+                12 -> drink.strIngredient12
+                13 -> drink.strIngredient13
+                14 -> drink.strIngredient14
+                15 -> drink.strIngredient15
+                else -> null
+            }
+            ingredient?.let {
+                Text(text = "- $ingredient")
+            }
+        }
         Spacer(modifier = Modifier.height(16.dp))
         Text(text = "Instructions:", style = MaterialTheme.typography.h6)
         Text(text = drink.strInstructions)
